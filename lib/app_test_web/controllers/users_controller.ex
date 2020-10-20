@@ -6,9 +6,15 @@ defmodule AppTestWeb.UsersController do
 
   action_fallback AppTestWeb.FallbackController
 
-  def index(conn, _params) do
-    users = Data.list_users()
-    render(conn, "index.json", users: users)
+#  def index(conn, _params) do
+#    users = Data.list_users()
+#    render(conn, "index.json", users: users)
+#  end
+
+
+  def index(conn, params) do
+    users = Data.get_users_by_username!(params)
+    render(conn, "show.json", users: users)
   end
 
   def create(conn, %{"users" => users_params}) do
@@ -19,6 +25,11 @@ defmodule AppTestWeb.UsersController do
       |> render("show.json", users: users)
     end
   end
+
+#  def show(conn, %{"email" => email, "username" => username}) do
+#    users = Data.get_users_by_username!(email, username)
+#    render(conn, "show.json", users: users)
+#  end
 
   def show(conn, %{"id" => id}) do
     users = Data.get_users!(id)

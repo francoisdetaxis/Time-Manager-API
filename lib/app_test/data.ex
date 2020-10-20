@@ -37,6 +37,17 @@ defmodule AppTest.Data do
   """
   def get_users!(id), do: Repo.get!(Users, id)
 
+  def get_users_by_username!(params) do
+    IO.puts "****************************************************\n"
+    IO.inspect(params)
+    IO.puts params["email"]
+    IO.puts params["username"]
+    IO.puts "\n"
+    IO.puts "****************************************************\n"
+
+    Repo.get_by!(Users, [email: params["email"], username: params["username"]])
+  end
+
   @doc """
   Creates a users.
 
