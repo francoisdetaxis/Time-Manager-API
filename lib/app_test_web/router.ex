@@ -27,6 +27,8 @@ defmodule AppTestWeb.Router do
    scope "/api", AppTestWeb do
      pipe_through :api
      resources "/users", UsersController, except: [:new, :edit]
+     resources "/workingtimes", WorkingtimesController, except: [:new, :edit]
+     resources "/clocks", ClocksController, except: [:new, :edit]
    end
 
   # Enables LiveDashboard only for development
