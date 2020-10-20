@@ -29,6 +29,7 @@ defmodule AppTestWeb.Router do
      resources "/users", UsersController, except: [:new, :edit]
      resources "/workingtimes", WorkingtimesController, except: [:new, :edit]
      resources "/clocks", ClocksController, except: [:new, :edit]
+#     post "/workingtimes/:usersid", WorkingtimesController, :create
    end
 
   # Enables LiveDashboard only for development

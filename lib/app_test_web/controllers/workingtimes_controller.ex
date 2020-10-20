@@ -12,6 +12,7 @@ defmodule AppTestWeb.WorkingtimesController do
   end
 
   def create(conn, %{"workingtimes" => workingtimes_params}) do
+    IO.inspect(workingtimes_params)
     with {:ok, %Workingtimes{} = workingtimes} <- Data.create_workingtimes(workingtimes_params) do
       conn
       |> put_status(:created)
