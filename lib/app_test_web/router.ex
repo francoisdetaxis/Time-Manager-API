@@ -31,12 +31,14 @@ defmodule AppTestWeb.Router do
      options "/users", UsersController, :options
      resources "/users", UsersController, except: [:new, :edit]
      options "/workingtimes", WorkingtimesController, :options
+     resources "/workingtimes", WorkingtimesController, except: [:new, :edit]
      post "/workingtimes/:usersId", WorkingtimesController, :create
      get "/workingtimes/:usersId/:id", WorkingtimesController, :show
      get "/workingtimes/:usersId", WorkingtimesController, :index
      put "/workingtimes/:id", WorkingtimesController, :update
      delete "/workingtimes/:id", WorkingtimesController, :delete
      options "/clocks", ClocksController, :options
+     resources "/clocks", ClocksController, except: [:new, :edit]
      post "/clocks/:usersId", ClocksController, :create
      get "/clocks/:usersId", ClocksController, :index
 

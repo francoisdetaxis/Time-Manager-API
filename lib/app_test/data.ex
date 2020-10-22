@@ -240,7 +240,7 @@ defmodule AppTest.Data do
       ** (Ecto.NoResultsError)
 
   """
-  #def get_workingtimes!(id), do: Repo.get!(Workingtimes, id)
+  def get_workingtimes!(id), do: Repo.get!(Workingtimes, id)
   def get_one_workingtimes_by_user!(usersId, id), do: Repo.get_by!(Workingtimes, [users_id: usersId, id: id])
   def get_all_workingtimes_by_user!(usersId, startdate, enddate), do: Repo.all(Workingtimes, [users_id: usersId, start: startdate, end: enddate])
   @doc """
