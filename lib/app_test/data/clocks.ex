@@ -3,9 +3,9 @@ defmodule AppTest.Data.Clocks do
   import Ecto.Changeset
 
   schema "clocks" do
-    field :status, :string
-    field :time, :string
-    field :user, :id
+    field :status, :boolean, default: false
+    field :time, :naive_datetime
+    belongs_to :users, AppTest.Data.Users
 
     timestamps()
   end

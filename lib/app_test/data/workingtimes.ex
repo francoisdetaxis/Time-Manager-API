@@ -5,7 +5,7 @@ defmodule AppTest.Data.Workingtimes do
   schema "workingtimes" do
     field :end, :naive_datetime
     field :start, :naive_datetime
-    field :user, :id
+    belongs_to :users, AppTest.Data.Users
 
     timestamps()
   end

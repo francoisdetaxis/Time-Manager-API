@@ -2,6 +2,7 @@ defmodule AppTestWeb.Router do
   use AppTestWeb, :router
 
   pipeline :browser do
+    plug CORSPlug, origin: "*"
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
@@ -11,8 +12,8 @@ defmodule AppTestWeb.Router do
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
     plug CORSPlug, origin: "*"
+    plug :accepts, ["json"]
   end
 
   scope "/", AppTestWeb do
@@ -27,11 +28,21 @@ defmodule AppTestWeb.Router do
   # Other scopes may use custom stacks.
    scope "/api", AppTestWeb do
      pipe_through :api
-     resources "/users", UsersController, except: [:new, :edit]
      options "/users", UsersController, :options
+     resources "/users", UsersController, except: [:new, :edit]
+     options "/workingtimes", WorkingtimesController, :options
      resources "/workingtimes", WorkingtimesController, except: [:new, :edit]
+     post "/workingtimes/:usersId", WorkingtimesController, :create
+     get "/workingtimes/:usersId/:id", WorkingtimesController, :show
+     get "/workingtimes/:usersId", WorkingtimesController, :index
+     put "/workingtimes/:id", WorkingtimesController, :update
+     delete "/workingtimes/:id", WorkingtimesController, :delete
+     options "/clocks", ClocksController, :options
      resources "/clocks", ClocksController, except: [:new, :edit]
-#     post "/workingtimes/:usersid", WorkingtimesController, :create
+     post "/clocks/:usersId", ClocksController, :create
+     get "/clocks/:usersId", ClocksController, :index
+
+    #     post "/workingtimes/:usersid", WorkingtimesController, :create
    end
 
   # Enables LiveDashboard only for development
