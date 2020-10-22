@@ -12,6 +12,7 @@ defmodule AppTestWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug CORSPlug, origin: "*"
   end
 
   scope "/", AppTestWeb do
@@ -27,6 +28,7 @@ defmodule AppTestWeb.Router do
    scope "/api", AppTestWeb do
      pipe_through :api
      resources "/users", UsersController, except: [:new, :edit]
+     options "/users", UsersController, :options
      resources "/workingtimes", WorkingtimesController, except: [:new, :edit]
      resources "/clocks", ClocksController, except: [:new, :edit]
 #     post "/workingtimes/:usersid", WorkingtimesController, :create
