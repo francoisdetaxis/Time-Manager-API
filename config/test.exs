@@ -7,7 +7,7 @@ use Mix.Config
 # Run `mix help test` for more information.
 config :app_test, AppTest.Repo,
   username: "postgres",
-  password: "admin",
+  password: "chatriki13",
 #  database: "app_test_test#{System.get_env("MIX_TEST_PARTITION")}",
   database: "time_manager",
   hostname: "localhost",

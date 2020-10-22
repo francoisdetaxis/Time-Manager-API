@@ -3,8 +3,8 @@ defmodule AppTest.Repo.Migrations.CreateClocks do
 
   def change do
     create table(:clocks) do
-      add :time, :string, null: false
-      add :status, :string, null: false
+      add :time, :naive_datetime, null: false
+      add :status, :boolean, default: false, null: false
       add :user, references(:users, on_delete: :nothing), null: false
 
       timestamps()
