@@ -15,5 +15,6 @@ defmodule AppTest.Data.Clocks do
     clocks
     |> cast(attrs, [:time, :status])
     |> validate_required([:time, :status])
+    |> foreign_key_constraint(:users_id)
   end
 end
