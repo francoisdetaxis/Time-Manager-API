@@ -33,6 +33,7 @@ defmodule AppTestWeb.Router do
      options "/workingtimes", WorkingtimesController, :options
 #     resources "/workingtimes", WorkingtimesController, except: [:new, :edit]
      post "/workingtimes/:usersId", WorkingtimesController, :create
+     options "/workingtimes/:usersId", WorkingtimesController, :options
      get "/workingtimes/:usersId/:id", WorkingtimesController, :show
      get "/workingtimes/:usersId", WorkingtimesController, :index
      put "/workingtimes/:id", WorkingtimesController, :update
