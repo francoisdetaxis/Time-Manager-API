@@ -20,7 +20,7 @@ defmodule AppTest.MixProject do
   def application do
     [
       mod: {AppTest.Application, []},
-      extra_applications: [:logger, :runtime_tools, :plug]
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
@@ -33,7 +33,7 @@ defmodule AppTest.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.3"},
+      {:phoenix, "~> 1.5.6"},
       {:phoenix_ecto, "~> 4.1"},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
@@ -45,7 +45,7 @@ defmodule AppTest.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:cors_plug, "~> 2.0"}
+      {:cors_plug, "~> 1.5"}
     ]
   end
 

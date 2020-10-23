@@ -15,6 +15,5 @@ defmodule AppTest.Data.Workingtimes do
     workingtimes
     |> cast(attrs, [:start, :end])
     |> validate_required([:start, :end])
-    |> foreign_key_constraint(:users_id)
   end
 end

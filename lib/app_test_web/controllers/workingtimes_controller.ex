@@ -20,21 +20,21 @@ defmodule AppTestWeb.WorkingtimesController do
     endDate = NaiveDateTime.from_iso8601!(workingtimes_params["end"])
     startDate = NaiveDateTime.from_iso8601!(workingtimes_params["start"])
     working_time_changeset = Ecto.build_assoc(user, :workingtimes, %{end: endDate, start: startDate })
-    Repo.insert(working_time_changeset)
-
+    {:ok, %Workingtimes{} = workingtimee} = Repo.insert(working_time_changeset)
+    #IO.inspect(working_timee)
       #conn
       #|> put_status(:created)
       #|> redirect(to: Routes.users_path(conn, :show, user))
     conn
       |> put_status(:created)
-      |> put_resp_header("location", Routes.workingtimes_path(conn, :show, working_time_changeset))
-      |> render("show.json", workingtimes: working_time_changeset)
+      #|> put_resp_header("location", Routes.workingtimes_path(conn, :show, working_time_changeset))
+      |> render("show.json", workingtimes: workingtimee)
   end
 
-  def show(conn, %{"usersId" => usersId, "id" => id}) do
-    working_times = Data.get_one_workingtimes_by_user!(usersId, id)
-    render(conn, "show.json", workingtimes: working_times)
-  end
+  #def show(conn, %{"usersId" => usersId, "id" => id}) do
+   # working_times = Data.get_one_workingtimes_by_user!(usersId, id)
+    #render(conn, "show.json", workingtimes: working_times)
+  #end
 
   #def show(conn, %{"id" => id}) do
     #workingtimes = Data.get_workingtimes!(id)

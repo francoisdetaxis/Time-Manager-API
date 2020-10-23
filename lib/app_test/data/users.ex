@@ -17,7 +17,5 @@ defmodule AppTest.Data.Users do
     |> cast(attrs, [:username, :email])
     |> validate_required([:username, :email])
     |> unique_constraint(:email)
-
-
   end
 end
