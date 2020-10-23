@@ -27,7 +27,7 @@ defmodule AppTestWeb.WorkingtimesController do
       #|> redirect(to: Routes.users_path(conn, :show, user))
     conn
       |> put_status(:created)
-      #|> put_resp_header("location", Routes.workingtimes_path(conn, :show, workingtimes_params))
+      |> put_resp_header("location", Routes.workingtimes_path(conn, :show, working_time_changeset))
       |> render("show.json", workingtimes: working_time_changeset)
   end
 
