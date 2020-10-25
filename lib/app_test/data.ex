@@ -143,13 +143,13 @@ defmodule AppTest.Data do
   """
   def get_clocks!(id), do: Repo.get!(Clocks, id)
 
-  def get_clocks_by_user(users_Id) do
+  def get_clocks_by_user(users_id) do
     recording_query =
-    from(
-      r in Clocks,
-      where: r.users == ^users_Id,
-      select: r
-    )
+      from(
+        r in Clocks,
+        where: r.users_id == ^users_id,
+        select: r
+      )
     Repo.all(recording_query)
     end
 
@@ -253,7 +253,15 @@ defmodule AppTest.Data do
 
   def get_one_workingtimes_by_user!(usersId, id), do: Repo.get_by!(Workingtimes, [users_id: usersId, id: id])
 
-  def get_all_workingtimes_by_user!(usersId, startdate, enddate), do: Repo.all(Workingtimes, [users_id: usersId, start: startdate, end: enddate])
+  def get_all_workingtimes_by_user!(usersId, startDate, endDate) do
+    recording_query =
+      from(
+        r in Workingtimes,
+        where: r.users_id == ^usersId and r.start >= ^startDate and r.end <= ^endDate ,
+        select: r
+      )
+    Repo.all(recording_query)
+  end
   @doc """
   Creates a workingtimes.
 
