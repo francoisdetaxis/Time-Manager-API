@@ -7,10 +7,16 @@ defmodule AppTestWeb.ClocksView do
   end
 
   def render("show.json", %{clocks: clocks}) do
+    IO.puts "#################################clocks INSIDE RENDER HIGH#####################################"
+    IO.inspect(clocks)
+    IO.puts "######################################################################"
     %{data: render_one(clocks, ClocksView, "clocks.json")}
   end
 
   def render("clocks.json", %{clocks: clocks}) do
+    IO.puts "#################################clocks INSIDE RENDER LOW#####################################"
+    IO.inspect(clocks)
+    IO.puts "######################################################################"
     %{id: clocks.id,
       time: clocks.time,
       status: clocks.status}

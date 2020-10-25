@@ -20,7 +20,7 @@ defmodule AppTest.MixProject do
   def application do
     [
       mod: {AppTest.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :plug]
     ]
   end
 
@@ -45,7 +45,7 @@ defmodule AppTest.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:cors_plug, "~> 1.5"}
+      {:cors_plug, "~> 2.0"}
     ]
   end
 

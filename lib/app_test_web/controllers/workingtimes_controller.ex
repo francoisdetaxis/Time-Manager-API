@@ -31,10 +31,10 @@ defmodule AppTestWeb.WorkingtimesController do
       |> render("show.json", workingtimes: workingtimee)
   end
 
-  def show(conn, %{"usersId" => usersId, "id" => id}) do
-    working_times = Data.get_one_workingtimes_by_user!(usersId, id)
-    render(conn, "show.json", workingtimes: working_times)
-  end
+  #def show(conn, %{"usersId" => usersId, "id" => id}) do
+   # working_times = Data.get_one_workingtimes_by_user!(usersId, id)
+    #render(conn, "show.json", workingtimes: working_times)
+  #end
 
   #def show(conn, %{"id" => id}) do
     #workingtimes = Data.get_workingtimes!(id)

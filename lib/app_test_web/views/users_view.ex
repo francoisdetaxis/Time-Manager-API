@@ -11,6 +11,9 @@ defmodule AppTestWeb.UsersView do
   end
 
   def render("users.json", %{users: users}) do
+    IO.puts "#################################users#####################################"
+    IO.inspect(users)
+    IO.puts "######################################################################"
     %{id: users.id,
       username: users.username,
       email: users.email}

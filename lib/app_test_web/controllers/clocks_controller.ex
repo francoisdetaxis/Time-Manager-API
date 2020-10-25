@@ -27,8 +27,8 @@ defmodule AppTestWeb.ClocksController do
   end
 
   #def show(conn, %{"usersId" => usersId}) do
-    #clock_times = Data.get_all_clock_by_user!(usersId)
-   # render(conn, "show.json", clocks: clock_times)
+  #clock_times = Data.get_all_clock_by_user!(usersId)
+  # render(conn, "show.json", clocks: clock_times)
   #end
 
   def show(conn, %{"usersId" => usersId}) do
