@@ -65,7 +65,6 @@ defmodule AppTest.Data do
     |> Users.changeset(attrs)
     |> Repo.insert()
   end
-
   @doc """
   Updates a users.
 
@@ -143,7 +142,17 @@ defmodule AppTest.Data do
 
   """
   def get_clocks!(id), do: Repo.get!(Clocks, id)
-  def get_clocks_by_user!(id, usersId), do: Repo.get!(Clocks, [id: id, usersId: usersId])
+
+  def get_clocks_by_user(users_id) do
+    recording_query =
+      from(
+        r in Clocks,
+        where: r.users_id == ^users_id,
+        select: r
+      )
+    Repo.all(recording_query)
+    end
+
   def get_all_clock_by_user!(usersId), do: Repo.all(Clocks, [users_id: usersId])
 
   @doc """
@@ -241,8 +250,18 @@ defmodule AppTest.Data do
 
   """
   def get_workingtimes!(id), do: Repo.get!(Workingtimes, id)
+
   def get_one_workingtimes_by_user!(usersId, id), do: Repo.get_by!(Workingtimes, [users_id: usersId, id: id])
-  def get_all_workingtimes_by_user!(usersId, startdate, enddate), do: Repo.all(Workingtimes, [users_id: usersId, start: startdate, end: enddate])
+
+  def get_all_workingtimes_by_user!(usersId, startDate, endDate) do
+    recording_query =
+      from(
+        r in Workingtimes,
+        where: r.users_id == ^usersId and r.start >= ^startDate and r.end <= ^endDate ,
+        select: r
+      )
+    Repo.all(recording_query)
+  end
   @doc """
   Creates a workingtimes.
 
@@ -255,14 +274,9 @@ defmodule AppTest.Data do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_workingtimes(usersId \\ %{}) do
-    body = %{
-      "start" => NaiveDateTime.local_now(),
-      "end" => NaiveDateTime.add(NaiveDateTime.local_now(), 7200),
-      "users_id" => usersId
-    }
+  def create_workingtimes(attrs \\ %{}) do
     %Workingtimes{}
-    |> Workingtimes.changeset(body)
+    |> Workingtimes.changeset(attrs)
     |> Repo.insert()
   end
 
