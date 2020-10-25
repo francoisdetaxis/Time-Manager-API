@@ -31,9 +31,9 @@ defmodule AppTestWeb.ClocksController do
   # render(conn, "show.json", clocks: clock_times)
   #end
 
-  def show(conn, %{"id" => usersId}) do
-    clocks = Data.get_clocks_by_user(usersId)
-    render(conn, "index.json", clocks: clocks)
+  def show(conn, %{"usersId" => usersId}) do
+    clockss = Data.get_clocks_by_user(usersId)
+    render(conn, "index.json", clocks: clockss)
   end
 
 end

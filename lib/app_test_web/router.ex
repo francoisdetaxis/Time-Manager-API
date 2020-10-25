@@ -37,9 +37,9 @@ defmodule AppTestWeb.Router do
      put("/workingtimes/:id", WorkingtimesController, :update)
      delete("/workingtimes/:id", WorkingtimesController, :delete)
 
-     options "/clocks", ClocksController, :options
      post("/clocks/:usersId", ClocksController, :create)
      get("/clocks/:usersId", ClocksController, :show)
+
 
     #post "/workingtimes/:usersid", WorkingtimesController, :create
    end
