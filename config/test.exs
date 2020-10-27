@@ -7,14 +7,10 @@ use Mix.Config
 # Run `mix help test` for more information.
 config :app_test, AppTest.Repo,
   username: "postgres",
-  password: "chatriki13",
-<<<<<<< HEAD
+  password: "admin",
 #  database: "app_test_test#{System.get_env("MIX_TEST_PARTITION")}",
   database: "time_manager",
-=======
-  database: "time_manager#{System.get_env("MIX_TEST_PARTITION")}",
->>>>>>> master
-  hostname: "localhost",
+  hostname: System.get_env("HOSTNAME_URL") || "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,

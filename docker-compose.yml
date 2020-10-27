@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  frontdock:
+    command: npm run serve
+    build:
+      context: ../theme02/.
+      dockerfile: DockerfileFront
+    ports:
+      - 8080:8080
+    volumes:
+      - '../theme02/.:/app'
+      - '/app/node_modules'
+
+  backdock:
+    build:
+      context: .
+      dockerfile: DockerfileBack
+    command: >
+      bash -c "mix deps.get --force && mix ecto.create && echo Y | mix ecto.migrate && mix phx.server"
+    environment:
+      - MIX_ENV=dev
+      - PORT=4000
+      - HOSTNAME_URL=bddDock
+    links:
+      - bddDock
+    depends_on:
+      - bddDock
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/app
+
+  bddDock:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    volumes:
+      - "./volumes/postgres:/var/lib/postgresql/data"
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    restart: always

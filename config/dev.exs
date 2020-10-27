@@ -3,9 +3,9 @@ use Mix.Config
 # Configure your database
 config :app_test, AppTest.Repo,
   username: "postgres",
-  password: "chatriki13",
+  password: "admin",
   database: "time_manager",
-  hostname: "localhost",
+  hostname: System.get_env("HOSTNAME_URL") || "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 # For development, we disable any cache and enable
@@ -16,11 +16,7 @@ config :app_test, AppTest.Repo,
 # with webpack to recompile .js and .css sources.
 config :app_test, AppTestWeb.Endpoint,
   http: [port: 4000],
-<<<<<<< HEAD
-  debug_errors: false,
-=======
   debug_errors: true,
->>>>>>> master
   code_reloader: true,
   check_origin: false,
   watchers: [
